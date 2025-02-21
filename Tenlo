@@ -1,0 +1,24 @@
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
+
+# Токен твоего бота
+TOKEN = '6502735764:AAHN5DRUGNRqXecHxwUZv88L2t8nNA9fWH8'
+
+# Функция, которая будет отвечать на команду /start
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('Привет! Я твой Telegram-бот.')
+
+# Создание объекта Updater и подключение бота
+updater = Updater(TOKEN)
+
+# Диспетчер для обработки команд
+dispatcher = updater.dispatcher
+
+# Регистрируем команду /start
+dispatcher.add_handler(CommandHandler("start", start))
+
+# Запуск бота
+updater.start_polling()
+
+# Ожидаем завершения работы
+updater.idle()
